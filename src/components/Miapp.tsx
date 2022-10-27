@@ -14,7 +14,8 @@ const Miapp = (props: Props) => {
         password:""
     })
     const {username, password} = cuenta;
-
+    const [errortip,setError] = useState("");
+    const [loading,setLoading] = useState(false);
     useEffect(() => {
     }, [])
     
@@ -29,16 +30,31 @@ const Miapp = (props: Props) => {
         e.preventDefault();
         
         (async()=>{
-            const resp = await fetch('http://localhost:3000/login',{
-            headers,
-            method: 'POST',
-            body:JSON.stringify({username, password})
-            })
-            if(!resp.ok){
-                alert('Error autentic f');
+            try {
+                setLoading(true)
+                const resp = await fetch('http://localhost:3000/login',{
+                headers,
+                method: 'POST',
+                body:JSON.stringify({username, password})
+                })
+                if(!resp.ok){
+                    const errorcito = await resp.json();
+                    setError(errorcito.message)
+                    setLoading(false)
+                    setTimeout(()=>{
+                        setError("")
+                    },2000)
+                }
+                setTimeout(()=>{
+                    setError("")
+                    setLoading(false)
+                },3000)
+                const data = await resp?.json();
+                localStorage.setItem('login',data.token)
+                console.log(localStorage.getItem('login'))
+            } catch (error) {
+                return ('no se pudo conectar con el servidor');
             }
-            const data = await resp.json();
-            console.log(data)
         })()
 
     }
@@ -49,6 +65,10 @@ const Miapp = (props: Props) => {
                 onSubmit={handleSubmit}
             >
                 <label htmlFor="username">Username</label>
+                {loading &&<div className="text-center my-2">
+                    <div className="spinner-border" role="status">
+                    </div>
+                </div>}
                 <input 
                         className='form-control'
                         type="text" 
@@ -67,13 +87,14 @@ const Miapp = (props: Props) => {
                         value={password}
                 />
                 <button 
-                        className="btn btn-primary" 
+                        className="my-2 btn btn-primary" 
                         type="submit"
                         
                         >
                             Iniciar Sesión
                 </button>
             </form>
+                <label htmlFor="error">{errortip}</label>
         </div>
     )
 }

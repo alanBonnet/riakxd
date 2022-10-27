@@ -20,8 +20,8 @@ function App() {
                 <Navbar username={username} colorPref={prefColor} />
             </header>
             {/* <Table_Conversions bootstrapClass="my-5 bg-primary rounded p-3" text_color="white"/> */}
-            {/* <BodyRickAndMorty /> */}
-            <Miapp />
+            <BodyRickAndMorty />
+            {/* <Miapp /> */}
         </>
     )
 }
