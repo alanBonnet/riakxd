@@ -21,6 +21,22 @@ const BodyRickAndMorty = () => {
         .then(resp => resp.json())
         .then(characters => setData(characters))
     }, [id])
+    const handleInputChange = (e:any) => {
+        const dato = e.target.value;
+        if(e.key == "Enter"){
+            if(dato>=1 && dato<827){
+                setId(parseInt(dato))
+                // console.log(e.target.value)
+                // console.log(e)
+            }else{
+                // setMensaje("Fuera de rango: solo hay 826 personajes registrados")
+                // setTimeout(()=>{
+                //     setMensaje("")
+                // },6000)
+            }
+        }
+
+    }
     return (
         <>
             <h1>Rickardo & Marcelo</h1>
