@@ -17,13 +17,13 @@ function App() {
 
     return (
         <>
-            <header>
+            <header className='mb-5'>
                 <Navbar username={username} colorPref={prefColor} />
             </header>
             {/* <Table_Conversions bootstrapClass="my-5 bg-primary rounded p-3" text_color="white"/> */}
             {/* <BodyRickAndMorty /> */}
-            <Lifecycle />
-            {/* <Miapp /> */}
+            {/* <Lifecycle /> */}
+            <Miapp/>
         </>
     )
 }

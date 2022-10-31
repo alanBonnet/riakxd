@@ -28,8 +28,8 @@ const Lifecycle = () => {
     })
     return (
         <>
-            <h1 className='bg-dark rounded p-3 m-5 text-white'>usuario: {`${user?.['name'] ?? ""}`}</h1>
-            <h1 className='bg-dark rounded p-3 m-5 text-white'>email: {`${user?.['email'] ?? ""}`}</h1>
+            <h4 className='bg-dark rounded p-3 m-5 text-white'>usuario: {`${user?.['name'] ?? ""}`}</h4>
+            <h4 className='bg-dark rounded p-3 m-5 text-white'>email: {`${user?.['email'] ?? ""}`}</h4>
             <button 
                 onClick={updateUser}
                 className="btn btn-primary">
