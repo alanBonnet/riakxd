@@ -38,24 +38,24 @@ const BodyRickAndMorty = () => {
 
     }
     return (
-        <>
+        <div className='mx-auto w-50 text-center'>
             <h1>Rickardo & Marcelo</h1>
             <hr />
             {/* {JSON.stringify(data, null, 3)} */}
             <p>{data?.['name']}</p>
             <p>{data?.['gender']}</p>
             <p>{data?.['species']}</p>
-            <img src={data?.['image']} alt={`$data?.['name']Img`} />
+            <img src={data?.['image']} alt={`${data?.['name']}Img`} />
             <hr />
             <p>{id}</p>
             <button 
                 className="btn btn-danger mx-2 my-2" 
-                onClick={()=>{decrementId}}>
+                onClick={()=>{decrementId()}}>
                     -1
             </button>
             <button 
                 className="btn btn-success mx-2 my-2" 
-                onClick={()=>{incrementId}}>
+                onClick={()=>{incrementId()}}>
                     +1
             </button>
             <button 
@@ -63,7 +63,7 @@ const BodyRickAndMorty = () => {
                 onClick={()=>{setBooleanuso(!booleanuso)}}>
                     {`${booleanuso}`}
             </button>
-        </>
+        </div>
     )
 }
 

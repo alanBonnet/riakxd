@@ -1,5 +1,5 @@
 import { getToken } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, { createRef, useEffect, useState } from 'react'
 import './authCSS.css'
 import Navbar from './Navbar'
 interface Props {
@@ -104,7 +104,8 @@ const Miapp = (props: Props) => {
         })()
 
     }
-    
+    const ojitoRef = createRef<any>()
+    const [ojito,setOjito] = useState(false)
     return (
         <>
             <header className='mb-5'>
@@ -136,13 +137,19 @@ const Miapp = (props: Props) => {
                     <label className='fw-bold'
                         htmlFor="password">Password</label>
                     <input
+                        id='password'
                         className='form-control border my-2'
                         type="password"
                         name='password'
                         onChange={handleInputChange}
                         autoComplete="false"
                         value={password}
+                        ref={ojitoRef}
                     />
+                    <button className="btn btn-light"
+                                type='button'
+                                id='ojito'
+                            onClick={()=>{ojitoRef.current.type == "password" ? ojitoRef.current.type = "text":ojitoRef.current.type = "password"}}>{}</button>
                     <div className="d-grid mt-2">
                         <button
                             className="my-2 btn btn-primary"
@@ -154,7 +161,7 @@ const Miapp = (props: Props) => {
                     </div>
                 </form>
                 <div className="text-center">
-                <label className='' htmlFor="error">{errortip}</label>
+                {errortip && <label className='bg-danger rounded p-4 fst-italic text-light my-2' htmlFor="error">{errortip}</label>}
                 </div>
                 </>}
 
